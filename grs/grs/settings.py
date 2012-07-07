@@ -113,6 +113,8 @@ TEMPLATE_DIRS = (
     os.getcwd()+'/templates',
 )
 
+print os.getcwd()
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
