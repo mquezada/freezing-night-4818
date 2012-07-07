@@ -1,4 +1,5 @@
 from django.conf.urls import patterns, include, url
+import settings
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -19,4 +20,8 @@ urlpatterns = patterns('',
     url(r'^gift/$', 'gift.views.index'),
     url(r'^gift/templates$', 'gift.views.templates'),
 
+)
+
+urlpatterns += patterns('',
+    (r'^static/(?P.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
 )

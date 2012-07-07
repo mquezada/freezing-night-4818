@@ -1,0 +1,23 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+	<title></title>
+</head>
+<body>
+<div class="container">
+
+
+	<ul>	
+	{% for tienda, productos in items.iteritems %}
+		<li>{{ tienda }}</li>
+		<ul>
+			{% for p in productos %}
+			<li>{{ p.nombre }}</li>
+			{% endfor %}
+		</ul>
+	{% endfor %}
+	</ul>
+</div>
+
+</body>
+</html>
