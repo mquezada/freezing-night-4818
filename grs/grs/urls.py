@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^fb/', 'gift.views.fb'),
     url(r'', include('social_auth.urls')),
+    url(r'^logged/$', 'gift.views.logged'),
     url(r'^gift/$', 'gift.views.index'),
     url(r'^gift/templates$', 'gift.views.templates'),
 
