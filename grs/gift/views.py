@@ -8,5 +8,10 @@ def index(request):
 	return HttpResponse("buena cabros")
 	#return render_to_response("index.kindle",{"variable":"hola"})
 
+
 def fb(request):
 	return HttpResponse(get_likes())
+
+def templates(request):
+	return render_to_response("index.kindle",{"variable":"hola"})
+
