@@ -14,13 +14,9 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-<<<<<<< HEAD
-    url(r'^gift/', 'gift.views.index'),
     url(r'^fb/', 'gift.views.fb'),
-=======
     url(r'', include('social_auth.urls')),
     url(r'^gift/$', 'gift.views.index'),
     url(r'^gift/templates$', 'gift.views.templates'),
 
->>>>>>> a4c56a16089fff40d582ea07fd7f431f5fed302a
 )
