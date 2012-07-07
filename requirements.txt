@@ -4,7 +4,6 @@ Flask==0.7.2
 Jinja2==2.6
 Werkzeug==0.7.1
 argparse==1.2.1
-certifi==0.0.8
 chardet==1.0.1
 facebook-sdk==0.3.1
 mechanize==0.2.5
