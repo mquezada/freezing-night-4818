@@ -1,1 +1,1 @@
-web: theapp/manage.py runserver 0.0.0.0:$PORT --noreload
+web: grs/manage.py runserver 0.0.0.0:$PORT --noreload
