@@ -7,4 +7,4 @@ def index(request):
 	#return render_to_response("index.kindle",{"variable":"hola"})
 
 def templates(request):
-	#return render_to_response("index.kindle",{"variable":"hola"})
+	return render_to_response("index.kindle",{"variable":"hola"})
