@@ -5,7 +5,7 @@ import falabella
 
 def get_likes():
 
-	access_token = "AAAAAAITEghMBACtyYyArm7TNZBQilpCWH42NPFpehZBOUfbZCLGWjzB84UT2KR51egyl8b9m8K6SsuVkOqIEPIaZBQ6VSSsjLWoaMZBGHaQZDZD"
+	access_token = "AAAAAAITEghMBAJoZALDZCueviVZAIbfmgtHXIh3N8JZADksZA11WyZCXtBeZCZBBcUQ1fn5E9FT0ZAJgZCyIkFUE24tuTZB6z23YG2c3dDzGK2RLAZDZD"
 
 	graph = facebook.GraphAPI(access_token)
 
@@ -24,3 +24,8 @@ def get_likes():
 
 	return names
 
+def main():
+	print get_likes()
+
+if __name__ == '__main__':
+	main()
