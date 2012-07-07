@@ -1,1 +1,4 @@
+{%load facebook%}
+{%facebook_button%}
+
 {{variable}}
