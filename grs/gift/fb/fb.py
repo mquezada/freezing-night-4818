@@ -1,38 +1,33 @@
 import facebook
+import sys
 
-def get_friends(access_token, user, limit=5):
+def get_friends(access_token, user):
 	graph = facebook.GraphAPI(access_token)
 
 	friends = graph.get_connections(user.username, "friends")
-
 	data = friends["data"]
-	names = []
+	data = data[:10]
+	frs = []
 
-	i = 1
-	if len(data) > 0:
+	if len(data) > 0:		
 		for fr in data:
-			names.append(fr)
-			if i == limit:
-				break
-			i += 1
+			aux = {}
+			aux["name"] = fr["name"]
+			aux["picture"] = graph.get_connections(fr["id"], "picture")["url"]
+			frs.append(aux)
 
-	return names
+
+	return frs
 
 def get_likes(access_token, id, limit=10):
 	graph = facebook.GraphAPI(access_token)
-
 	likes = graph.get_connections(id, "likes")
-
 	data = likes["data"]
 	names = []
 
-	i = 1
 	if len(data) > 0:
 		for like in data:
 			names.append(like["name"])	
-			if i == limit:
-				break
-			i += 1
 
 	return names
 

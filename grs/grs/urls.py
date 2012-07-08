@@ -14,10 +14,14 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
+    url(r'^$', 'gift.views.index'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^fb/', 'gift.views.fb'),
     url(r'', include('social_auth.urls')),
     url(r'^logged/$', 'gift.views.logged'),
+    url(r'^logout/$', 'gift.views.logout'),
+    url(r'^friends/$', 'gift.views.friends'),
+    url(r'^friends_likes/(?P<id>\d+)/$', 'gift.views.friendsLikes'),
     url(r'^gift/$', 'gift.views.index'),
     url(r'^gift/templates$', 'gift.views.templates'),
 

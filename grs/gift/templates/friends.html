@@ -28,8 +28,13 @@
 			<button type="submit" class="btn"> <i class="icon-search"></i></button>
 		</form>
 
+		{%for friend in friends%}
+			<div class="well">
+				<img src="{{friend.picture}}"/>
+				{{friend.name}} <a href="/friends_likes/{{friend.id}}">likes</a><br/>
+			</div>
+		{%endfor%}
 	</div>
 
 </body>
 </html>
-

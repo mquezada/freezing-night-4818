@@ -1,1 +1,7 @@
+|{{username}}|
+<p/>
 {{variable}}
+
+<div id="facebook">
+    <p><fb:login-button perms="{{ login_button_perms }}"></fb:login-button></p>
+</div> 
