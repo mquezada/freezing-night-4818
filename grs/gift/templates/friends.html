@@ -1,17 +1,36 @@
+<!DOCTYPE HTML>
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+	<script type="text/javascript" charset="utf-8" src="/static/jquery.js">
+	</script>
+	<script type="text/javascript" charset="utf-8" src="/static/bootstrap/js/bootstrap.js">
+	</script>
+
+	<script type="text/javascript" charset="utf-8">
+		$('.dropdown-toggle').dropdown();
+	</script>
+	<link rel="stylesheet" href="/static/regalame.css" type="text/css" charset="utf-8">
 </head>
 <body>
 
 	<div class="navbar">
 		<div class="navbar-inner">
 			<div class="container">
-				<a class="brand" href="#"> Regálame algo po =( </a>
+				<a class="brand" href="#">Party Hard!</a>
 				<ul class="nav pull-right">
+					<li class="divider-vertical"></li>
 					<li>
 						{%if user%}
-							<a href="logout"><img src="{{picture}}"/> {{user.first_name}} {{user.last_name}}</a>
+							<li class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown">
+									<img id="profile-pic" src="{{picture}}"/> {{user.first_name}} {{user.last_name}}
+								    <b class="caret"></b>
+								</a>
+								<ul class="dropdown-menu">
+									<li><a href="/logout">Logout</a></li>
+								</ul>
+							</li>
 						{%else%}
 							<a href="login/facebook">logearse</a>
 						{%endif%}
@@ -23,8 +42,8 @@
 
 	<div class="container box">
 		<form class="well form-search" name="buscar-form" action="/grs/gift/amigos">
-			<span class="form text">Busca a tus amigos:</span> 
-			<input type="text" class="input-medium search-query" name="buscar"/>
+			<span class="form text"><strong>Busca a tus amigos:</strong></span> 
+			<input type="text" class="input-large search-query" name="buscar"/>
 			<button type="submit" class="btn"> <i class="icon-search"></i></button>
 		</form>
 
