@@ -28,7 +28,7 @@ def aggregate(category, terms):
 
 		elif category == 'music':
 			recommendations['music'].extend(ebay2(term, 'music'))
-			recommendations['music'].extend(mercadolibre(term, 'musica'))
+			#recommendations['music'].extend(mercadolibre(term, 'musica'))
 
 		elif category == 'books':
 			recommendations['books'].extend(buscalibros(term))
