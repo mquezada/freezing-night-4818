@@ -22,7 +22,6 @@ def paris(term):
 	result = []
 
 	for prod in prods:
-		print prod
 
 		nombre = prod.find('div', {'class' : 'descP2011'}).text
 		link = prod.find('div', {'class' : 'descP2011'}).a['href']
@@ -38,10 +37,3 @@ def paris(term):
 		 	})
 
 	return result
-
-def main():
-	print paris("iphone")
-
-
-if __name__ == '__main__':
-	main()

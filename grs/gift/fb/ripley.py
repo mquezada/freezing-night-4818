@@ -14,10 +14,3 @@ def ripley(term):
 	html = b.submit().read()
 
 	soup = BeautifulSoup(html)
-
-def main():
-	print ripley("iphone")
-
-
-if __name__ == '__main__':
-	main()

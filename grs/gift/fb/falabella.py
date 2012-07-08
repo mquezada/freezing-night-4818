@@ -34,10 +34,3 @@ def falabella(term):
 		 	})
 
 	return result
-
-def main():
-	print falabella("chocolate")
-
-
-if __name__ == '__main__':
-	main()

@@ -37,13 +37,6 @@ def ebay(term):
 
 	return results
 
-def main():
-	print ebay("iphone")
-
-if __name__ == '__main__':
-	main()
-
-
 
 
 
