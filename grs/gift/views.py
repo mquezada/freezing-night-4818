@@ -51,7 +51,7 @@ def friends(request):
 
 	#print friend_likes(access_token, user)
 	friends = get_friends(access_token, user)
-
+	friends = friends[:10]
 	return render_to_response("friends.html", {"user":user, "friends":friends}, context_instance=RequestContext(request))
 
 	#return render_to_response("logged.kindle",{"access_token":access_token, "username":user.username}, context_instance=RequestContext(request))
