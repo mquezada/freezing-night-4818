@@ -76,8 +76,6 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_PATH, '../../static'),
 )
 
-print STATIC_ROOT
-
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (

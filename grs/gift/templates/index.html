@@ -1,0 +1,5 @@
+{%if user%}
+	<a href="logout">deslogueate {{user.first_name}} {{user.last_name}}</a>
+{%else%}
+	<a href="login/facebook">logearse</a>
+{%endif%}
