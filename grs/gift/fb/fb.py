@@ -9,13 +9,14 @@ def get_friends(access_token, user):
 	data = data[:10]
 	frs = []
 
+
 	if len(data) > 0:		
 		for fr in data:
 			aux = {}
-			aux["name"] = fr["name"]
-			aux["picture"] = graph.get_connections(fr["id"], "picture")["url"]
+			aux = fr
+			#aux["picture"] = graph.get_connections(fr["id"], "picture")["url"]
+			aux["picture"] = ""
 			frs.append(aux)
-
 
 	return frs
 
