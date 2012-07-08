@@ -79,13 +79,36 @@ def friendsLikes(request, id=-1):
 	if len(likes) == 0:
 		tieneLikes = False
 
-	recommendations = aggregate(likes)
+	recommendations = aggregate('music', likes)
 	
 	return render_to_response(
 		"friendsLikes.html", 
 		{"likes":likes, "recommendations":recommendations, "tieneLikes":tieneLikes},
 		context_instance=RequestContext(request))
 
+
+def recommendations(request, id=-1):
+	if id < 0:
+		return redirect("/")
+
+	books = get(request.session['access_token'], id, 'books')
+	games = get(request.session['access_token'], id, 'games')
+	music = get(request.session['access_token'], id, 'music')
+	movies = get(request.session['access_token'], id, 'movies')
+
+	books  = aggregate('books', books)
+	music  = aggregate('music', music)
+	movies = aggregate('movies', movies)
+	games  = aggregate('games', games)
+
+	recs = dict(books.items() + music.items() + movies.items() + games.items())
+
+	if len(recs) > 0:
+		tieneLikes = True
+	else:
+		tieneLikes = False
+
+	return render_to_response("friendsLikes.html", {'recommendations' : recs, 'tieneLikes' : tieneLikes}) 
 
 def logout(request):
 	if "user" in request.session:

@@ -18,8 +18,13 @@ def zmart(term):
 
 	soup = BeautifulSoup(html)
 
-	prods = soup('div', {'id' : 'busqueda'})[0].findAll('div', {'class': 'caja_minihome'})
+	prods = soup('div', {'id' : 'busqueda'})
 
+	if len(prods) > 0:
+		prods = prods[0].findAll('div', {'class': 'caja_minihome'})
+	else:
+		return []
+		
 	result = []
 	for prod in prods:
 		 nombre = prod.h3.text
