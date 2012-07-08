@@ -1,13 +1,24 @@
 import facebook
-import pprint
 
-import falabella
-
-def get_likes(access_token, user):
+def get_friends(access_token, user):
 	graph = facebook.GraphAPI(access_token)
 
-	likes = graph.get_connections(user.id, "likes")
-	pp = pprint.PrettyPrinter(indent=4)
+	friends = graph.get_connections(user.username, "friends")
+
+	data = friends["data"]
+	names = []
+
+	if len(data) > 0:
+		for fr in data:
+			names.append(fr)	
+
+	return names
+
+def get_likes(access_token, id):
+	graph = facebook.GraphAPI(access_token)
+
+	likes = graph.get_connections(id, "likes")
+
 	data = likes["data"]
 	names = []
 
@@ -16,3 +27,20 @@ def get_likes(access_token, user):
 			names.append(like["name"])	
 
 	return names
+
+def friend_likes(access_token, user):
+	graph = facebook.GraphAPI(access_token)
+
+	friends = get_friends(access_token, user)
+
+	likes = {}
+	for friend in friends:
+		name = friend['name']
+		f_id = friend['id']
+
+		likes[f_id] = {
+			'name': name,
+			'likes': get_likes(access_token, f_id)
+		}
+
+	return likes
