@@ -31,7 +31,8 @@ def falabella(term):
 		 	'link' : "%s%s" % (prefix, link),
 		 	'img' : img,
 		 	'precio' : precio1,
-		 	'desc' : ""
+		 	'desc' : "",
+			'likeAsociado': term
 		 	})
 
 	return result

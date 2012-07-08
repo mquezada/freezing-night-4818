@@ -3,14 +3,15 @@ import sys
 import locale
 from datetime import *
 
-def get_friends(access_token, user):
+def get_friends(access_token, user, limit=10):
 	graph = facebook.GraphAPI(access_token)
 
 	friends = graph.get_connections(user.username, "friends", fields=['name','birthday','picture'])
 	data = friends["data"]
 	map(format_fecha, data)
 	data.sort(cmp_dates)
-	data = data[:10]
+	if limit != 0:
+		data = data[:limit]
 	frs = []
 
 
@@ -26,15 +27,13 @@ def get_likes(access_token, id, limit=10):
 	data = likes["data"]
 	names = []
 
-	i = 1
 	if len(data) > 0:
 		for like in data:
 			names.append(like["name"])	
 			if i == limit:
 				break
 			i += 1
-
-	return names
+	return data
 
 def friend_likes(access_token, user):
 	graph = facebook.GraphAPI(access_token)
@@ -52,6 +51,12 @@ def friend_likes(access_token, user):
 		}
 
 	return likes
+
+def get_likes_likes(access_token, id):
+	graph = facebook.GraphAPI(access_token)
+	info = graph.get_object(id)
+
+	return info
 
 def cmp_dates(f1,f2):
 	if "birthday" not in f1:

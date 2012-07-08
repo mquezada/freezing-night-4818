@@ -39,7 +39,8 @@ def paris(term):
 		 	'link' : "%s%s" % (prefix, link),
 		 	'img' : "%s%s" % (imgprefix, img),
 		 	'precio' : precio,
-		 	'desc' : ""
+		 	'desc' : "",
+			'likeAsociado': term
 		 	})
 
 	return result
