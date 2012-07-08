@@ -79,6 +79,13 @@ def cmp_dates(f1,f2):
 	b2 = datetime.strptime(f2["birthday2"], "%m/%d")
 	today = datetime.today()
 
+	#b1 el mismo dia
+	if today.month == b1.month and today.day == b1.day:
+		return -1
+	#b2 el mismo dia
+	if today.month == b2.month and today.day == b2.day:
+		return 1
+
 	#ejemplo. b1 en enero, b2 en febrero, actual marzo, mas cercano b1
 	if today.month > b1.month and today.month > b2.month:
 		if b1.month < b2.month:

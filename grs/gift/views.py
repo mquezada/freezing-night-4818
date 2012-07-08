@@ -141,7 +141,9 @@ def recommendations(request, id=-1):
 	else:
 		tieneLikes = False
 
-	return render_to_response("friendsLikes.html", {'recommendations' : recs, 'tieneLikes' : tieneLikes}) 
+	picture = request.session["picture"]
+	user = request.session["user"]
+	return render_to_response("friendsLikes.html", {'recommendations' : recs, 'tieneLikes' : tieneLikes, 'picture':picture, 'user':user}) 
 
 def logout(request):
 	if "user" in request.session:
