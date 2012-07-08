@@ -30,7 +30,7 @@ def aggregate(terms):
 			Thread(target=add_rec, args=('Falabella', falabella, term)),
 			Thread(target=add_rec, args=('Paris', paris, term)),
 			Thread(target=add_rec, args=('Ebay', ebay, term)),
-			Thread(target=add_rec, args=('Feriamix', feriamix, term))
+			#Thread(target=add_rec, args=('Feriamix', feriamix, term))
 		]
 
 		map(lambda t : t.start(), term_threads)
