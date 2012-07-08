@@ -1,4 +1,5 @@
 from BeautifulSoup import BeautifulSoup
+from django.utils.encoding import smart_str, smart_unicode
 import mechanize
 
 def feriamix(term):
@@ -9,7 +10,7 @@ def feriamix(term):
 
 	b.open(url)
 	b.select_form(nr=1)
-	b['busqueda'] = term
+	b['busqueda'] = smart_str(term)
 
 	html = b.submit().read()
 

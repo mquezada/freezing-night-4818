@@ -1,4 +1,26 @@
-D:
-{%for like in likes%}
-	{{like}}<br/>
-{%endfor%}
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+	<title></title>
+</head>
+<body>
+<div class="container">
+
+
+	<ul>	
+	{% for tienda, productos in recommendations.iteritems %}
+		<li>{{ tienda }}</li>
+		<ul>
+			{% for p in productos %}
+			<li>{{ p.nombre }}</li>
+			<li>{{ p.precio }}</li>
+			<li><a href="{{ p.link }}">{{ p.link }}</a></li>
+			<li><img src="{{ p.img }}" /></li>
+			{% endfor %}
+		</ul>
+	{% endfor %}
+	</ul>
+</div>
+
+</body>
+</html>

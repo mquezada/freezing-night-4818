@@ -1,6 +1,17 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+	<script type="text/javascript" charset="utf-8" src="/static/jquery.js">
+	</script>
+	<script type="text/javascript" charset="utf-8" src="/static/bootstrap/js/bootstrap.js">
+	</script>
+
+	<script type="text/javascript" charset="utf-8">
+		$('.carousel').carousel({
+		  interval: 2000
+		});
+	</script>
+	<link rel="stylesheet" href="/static/regalame.css" type="text/css" charset="utf-8">
 </head>
 <body>
 
@@ -19,9 +30,32 @@
 
 	<div class="container box">
 		<h1>Bienvenidos a <strong>"Party Hard!"</strong></h1>
-		<h3>
-			<strong>Party Hard!</strong> es una aplicación de recomendación de regalos, para utilizar el máximo potencial de esta aplicación te recomendamos iniciar sesión con tu cuenta de Facebook.
-		</h3>
+		<h3>Encuentra regalos para tus amigos utilizando tu cuenta de facebook.</h3>
+
+		<div class="row span10 offset1">
+			<div id="myCarousel" class="carousel slide">
+			  <!-- Carousel items -->
+			  <div class="carousel-inner">
+			    <div class="active item">
+					<img src="/static/images/gift.jpg"/>
+					<div class="carousel-caption">
+						<h4>¿Tu amig@ esta de cumpleaños?</h4>
+						<p>Encuentra el mejor regalo basado en sus gustos.</p>
+					</div>
+				</div>
+			    <div class="item">
+					<img src="/static/images/gift2.jpg" alt>
+					<div class="carousel-caption">
+						<h4>Ve que cumpleaños se vienen!</h4>
+						<p>Organizamos la información utilizando tu cuenta de facebook.</p>
+					</div>
+				</div>
+			  </div>
+			  <!-- Carousel nav -->
+			  <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+			  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+			</div>
+		</div>
 	</div>
 
 </body>
