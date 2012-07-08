@@ -44,7 +44,7 @@
 	<div class="container box">
 		<form class="well form-search" name="buscar-form" action="/gift/search/" method="post">{% csrf_token %}
 			<span class="form text"><strong>Busca a tus amigos:</strong></span> 
-			<input type="text" data-provide="typeahead"
+			<input type="text" autocomplete="off" data-provide="typeahead"
 			data-source='[{% for f in allFriends %}"{{f}}",{% endfor %}""]'
 			data-items="8"
 			class="input-large search-query" name="buscar"/>
@@ -53,8 +53,8 @@
 
 		{%for friend in friends%}
 			<div class="well">
-				<img src="{{friend.picture}}"/>
-				{{friend.name}} {{friend.birthday}}<a href="/friends_likes/{{friend.id}}">likes</a><br/>
+				<a href="/friends_likes/{{friend.id}}"><img src="{{friend.picture}}"/></a>
+				<a href="/friends_likes/{{friend.id}}">{{friend.name}} {{friend.birthday}}</a>
 			</div>
 		{%endfor%}
 	</div>

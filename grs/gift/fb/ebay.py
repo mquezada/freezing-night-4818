@@ -34,7 +34,8 @@ def ebay(term):
 					'link' : link,
 					'img' : img,
 					'desc' : desc,
-					'precio' : precio				
+					'precio' : precio,
+					'likeAsociado': term
 					})
 
 	return results
