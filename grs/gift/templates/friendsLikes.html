@@ -1,28 +1,80 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+	<script type="text/javascript" charset="utf-8" src="/static/jquery.js">
+	</script>
+	<script type="text/javascript" charset="utf-8" src="/static/bootstrap/js/bootstrap.js">
+	</script>
+	<script type="text/javascript" charset="utf-8">
+		$(document).ready(function(){
+			var car = $('.carousel');
+			car.each(function(x,y){$($($(y).children()[0]).children()[0]).addClass("active")})
+			car.carousel({
+			});
+		});
+	</script>
+
 	<title></title>
 </head>
 <body>
+<div class="navbar">
+	<div class="navbar-inner">
+		<div class="container">
+			<a class="brand" href="#"> Regálame algo po =( </a>
+			<ul class="nav pull-right">
+				<li>
+					{%if user%}
+						<a href="/logout">deslogueate {{user.first_name}} {{user.last_name}}</a>
+					{%else%}
+						<a href="/login/facebook">logearse</a>
+					{%endif%}
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
 <div class="container">
 
 {% if tieneLikes %}
-	<ul>	
+<div class="content">
 	{% for tienda, productos in recommendations.iteritems %}
-		<li>{{ tienda }}</li>
-		<ul>
-			{% for p in productos %}
-			<li>{{ p.nombre }}</li>
-			<li>{{ p.precio }}</li>
-			<li><a href="{{ p.link }}">{{ p.link }}</a></li>
-			<li><img src="{{ p.img }}" /></li>
-			<li>{{p.likeAsociado}}</li>
-			{% endfor %}
-		</ul>
-	{% endfor %}
-	</ul>
+		<div class="content well">
+			<div class="content-heading">
+				<h3>{{tienda}}</h3>
+			</div>
+			
+			<div class="content-body">
+				<div class="content-inner">
+					<div id="{{tienda}}" class="carousel">
+					  <!-- Carousel items -->
+						<div class="carousel-inner">
+							{% for p in productos %}
+							    <div class="item">
+							    	<ul>
+										<li>{{ p.nombre }}</li>
+										<li>{{ p.precio }}</li>
+										<li><a href="{{ p.link }}">{{ p.link }}</a></li>
+										<li><img src="{{ p.img }}" /></li>
+										<li>{{p.likeAsociado}}</li>
+									</ul>
+								</div>
+					    	{% endfor %}
+						</div>
+						<!-- Carousel nav -->
+						<a class="carousel-control left" href="#{{tienda}}" data-slide="prev">&lsaquo;</a>
+						<a class="carousel-control right" href="#{{tienda}}" data-slide="next">&rsaquo;</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	{%endfor%}
+</div>	
+
 {% else %}
 	<h2>Tu amigo no tiene 'likes' en facebook</h2>
+
 {% endif %}
 
 </div>

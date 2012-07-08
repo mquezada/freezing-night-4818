@@ -25,13 +25,15 @@ def add_rec(name, method, term):
 
 def aggregate(terms):
 
+	global recommendations
+	recommendations = {}
 	threads = []
 	for term in terms:
 		term = term["name"]
 		term_threads = [
-			#Thread(target=add_rec, args=('Falabella', falabella, term)),
-			Thread(target=add_rec, args=('Paris', paris, term)),
-			#Thread(target=add_rec, args=('Ebay', ebay, term)),
+			Thread(target=add_rec, args=('Falabella', falabella, term)),
+			#Thread(target=add_rec, args=('Paris', paris, term)),
+			Thread(target=add_rec, args=('Ebay', ebay, term)),
 			#Thread(target=add_rec, args=('Feriamix', feriamix, term))
 		]
 
