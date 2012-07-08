@@ -24,7 +24,12 @@ def buscalibros(term):
 		nombre = prod.table.h4.text
 		link = prod.table.h4.a['href']		
 		img = prod.table.img['src']
-		precio = prod.find('span', {'class':'precio_rojo'}).text
+		precio = prod.find('span', {'class':'precio_rojo'})
+
+		if precio is not None:
+			precio = precio.text
+		else:
+			precio = "Precio no disponible"
 
 		result.append({
 		 	'nombre' : nombre,

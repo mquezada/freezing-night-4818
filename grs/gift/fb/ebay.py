@@ -14,9 +14,9 @@ def get_category(category):
 	return categories[category]
 
 def by_category(term, id):	
-	base_url = "http://svcs.sandbox.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsAdvanced&SERVICE-VERSION=1.11.0&SECURITY-APPNAME=Hashtag70-08b3-4798-b42e-243a5f7221d&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&paginationInput.entriesPerPage=10&keywords=%s&categoryId=%s&descriptionSearch=true"
+	base_url = "http://svcs.sandbox.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsAdvanced&SERVICE-VERSION=1.11.0&SECURITY-APPNAME=Hashtag70-08b3-4798-b42e-243a5f7221d&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&paginationInput.entriesPerPage=10&keywords=%s&categoryId=%s&descriptionSearch=false"
 
-	query = urllib.quote(smart_str(term))
+	query = urllib.quote(smart_str("\"%s\"" % term))
 	url = base_url % (query, id)
 
 	return url
