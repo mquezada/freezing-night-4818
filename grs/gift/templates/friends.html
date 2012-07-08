@@ -11,7 +11,7 @@
 				<ul class="nav pull-right">
 					<li>
 						{%if user%}
-							<a href="logout">deslogueate {{user.first_name}} {{user.last_name}}</a>
+							<a href="logout"><img src="{{picture}}"/> {{user.first_name}} {{user.last_name}}</a>
 						{%else%}
 							<a href="login/facebook">logearse</a>
 						{%endif%}
