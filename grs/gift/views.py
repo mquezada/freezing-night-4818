@@ -77,8 +77,12 @@ def friendsLikes(request, id=-1):
 		return redirect("/")
 
 	likes = get_likes(request.session["access_token"], id)
-	print likes
-	return render_to_response("friendsLikes.html", {"likes":likes},context_instance=RequestContext(request))
+	recommendations = aggregate(likes)
+
+	return render_to_response(
+		"friendsLikes.html", 
+		{"likes":likes, "recommendations":recommendations},
+		context_instance=RequestContext(request))
 
 
 def logout(request):

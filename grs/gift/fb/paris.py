@@ -1,4 +1,5 @@
 from BeautifulSoup import BeautifulSoup
+from django.utils.encoding import smart_str, smart_unicode
 import mechanize
 
 def paris(term):
@@ -11,7 +12,7 @@ def paris(term):
 
 	b.open(url)
 	b.select_form(nr=0)
-	b['buscador'] = term
+	b['buscador'] = smart_str(term)
 
 	html = b.submit().read()
 
@@ -26,7 +27,12 @@ def paris(term):
 		nombre = prod.find('div', {'class' : 'descP2011'}).text
 		link = prod.find('div', {'class' : 'descP2011'}).a['href']
 		img = prod.find('div', {'class' : 'mrgnFt2'}).a.img['src']
-		precio = prod.find('div', {'class' : 'prcIntB2011'}).text
+		precio = prod.find('div', {'class' : 'prcIntB2011'})
+
+		if precio is not None:
+			precio = precio.text
+		else:
+			precio = ""
 
 		result.append({
 		 	'nombre' : nombre,
