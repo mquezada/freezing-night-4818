@@ -22,7 +22,7 @@ urlpatterns = patterns('',
 	url(r'^gift/search/$', 'gift.views.search'),
     url(r'^logout/$', 'gift.views.logout'),
     url(r'^friends/$', 'gift.views.friends'),
-    url(r'^friends_likes/(?P<id>\d+)/$', 'gift.views.c'),
+    url(r'^friends_likes/(?P<id>\d+)/$', 'gift.views.friendsLikes'),
     url(r'^gift/$', 'gift.views.index'),
     url(r'^gift/templates$', 'gift.views.templates'),
 

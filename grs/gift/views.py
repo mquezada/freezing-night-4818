@@ -51,7 +51,6 @@ def friends(request):
 
 	user = request.session["user"]
 	picture = request.session["picture"]
-	print picture
 	access_token = request.session["access_token"]
 	
 
@@ -68,8 +67,6 @@ def search(request):
 	name = request.POST["buscar"]
 	friends = get_friends(request.session["access_token"], request.session["user"], 0)
 	for friend in friends:
-		print name
-		print friend["name"]
 		if friend["name"]==name:
 			return redirect("/friends_likes/"+str(friend["id"]))
 
