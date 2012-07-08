@@ -36,11 +36,34 @@ def fb(request):
 	return render_to_response("recommendations.html", {'items' : aggregate(terms)})
 
 def logged(request):
-	user = request.user
-	access_token = UserSocialAuth.objects.get(user_id=user.id).extra_data['access_token']
-	request.session["user"] = user
+	request.session["user"] = request.user
+	request.session["access_token"] = UserSocialAuth.objects.get(user_id=request.user.id).extra_data['access_token']
+	return redirect("/friends")
+
+	
+def friends(request):
+	if "user" not in request.session or "access_token" not in request.session:
+		return redirect("/")
+
+	user = request.session["user"]
+	access_token = request.session["access_token"]
+	
+
+	#print friend_likes(access_token, user)
 	friends = get_friends(access_token, user)
-	return render_to_response("logged.kindle",{"access_token":access_token, "username":user.username, "user":user, "friends":friends}, context_instance=RequestContext(request))
+
+	return render_to_response("friends.html", {"user":user, "friends":friends}, context_instance=RequestContext(request))
+
+	#return render_to_response("logged.kindle",{"access_token":access_token, "username":user.username}, context_instance=RequestContext(request))
+
+def friendsLikes(request, id=-1):
+	if id == -1:
+		return redirect("/")
+
+	likes = get_likes(request.session["access_token"], id)
+	print likes
+	return render_to_response("friendsLikes.html", {"likes":likes},context_instance=RequestContext(request))
+
 
 def logout(request):
 	if "user" in request.session:

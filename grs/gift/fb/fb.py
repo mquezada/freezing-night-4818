@@ -16,16 +16,12 @@ def get_friends(access_token, user):
 
 def get_likes(access_token, id):
 	graph = facebook.GraphAPI(access_token)
-
 	likes = graph.get_connections(id, "likes")
-
 	data = likes["data"]
 	names = []
-
 	if len(data) > 0:
 		for like in data:
 			names.append(like["name"])	
-
 	return names
 
 def friend_likes(access_token, user):
