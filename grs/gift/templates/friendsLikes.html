@@ -11,8 +11,7 @@
 		$(document).ready(function(){
 			var car = $('.carousel');
 			car.each(function(x,y){$($($(y).children()[0]).children()[0]).addClass("active")})
-			car.carousel({
-			});
+			//car.carousel();
 		});
 	</script>
 
@@ -49,7 +48,7 @@
 
 {% if tieneLikes %}
 
-<div class="content">
+<div class="span10 offset1 content">
 	{% for tienda, productos in recommendations.iteritems %}
 		<div class="content well">
 			<div class="content-heading">
@@ -63,15 +62,19 @@
 						<div class="carousel-inner">
 							{% for p in productos %}
 							    <div class="item">
-							    	<ul>
-										<li>{{ p.nombre }}</li>
-										<li>{{ p.precio }}</li>
-										<li><a href="{{ p.link }}">{{ p.link }}</a></li>
-										<li><img src="{{ p.img }}" /></li>
-										<li>{{p.likeAsociado}}</li>
-									</ul>
+							    	<div class="span2 offset1">
+								    	<img src="{{ p.img }}" class="producto-foto"/>
+									</div>
+									<div class="span4">
+										<ul>
+											<li><a href="{{ p.link }}">{{ p.nombre }}</a></li>
+											<li>{{ p.precio }}</li>
+											<li>Like FB: {{p.likeAsociado}}</li>
+										</ul>
+									</div>
 								</div>
 					    	{% endfor %}
+				
 						</div>
 						<!-- Carousel nav -->
 						<a class="carousel-control left" href="#{{tienda}}" data-slide="prev">&lsaquo;</a>
