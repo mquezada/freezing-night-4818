@@ -1,11 +1,13 @@
 import facebook
 import sys
+from datetime import *
 
 def get_friends(access_token, user):
 	graph = facebook.GraphAPI(access_token)
 
 	friends = graph.get_connections(user.username, "friends", fields=['name','birthday','picture'])
 	data = friends["data"]
+	data.sort(cmp_dates)
 	data = data[:10]
 	frs = []
 
@@ -44,3 +46,49 @@ def friend_likes(access_token, user):
 		}
 
 	return likes
+
+def cmp_dates(f1,f2):
+	if "birthday" not in f1:
+		return 1
+	if "birthday" not in f2:
+		return -1
+
+	b1list = f1["birthday"].split("/")
+	b2list = f2["birthday"].split("/")
+	b1 = datetime.strptime(b1list[0]+"/"+b1list[1], "%m/%d")
+	b2 = datetime.strptime(b2list[0]+"/"+b2list[1], "%m/%d")
+	today = datetime.today()
+
+	#ejemplo. b1 en enero, b2 en febrero, actual marzo, mas cercano b1
+	if today.month > b1.month and today.month > b2.month:
+		if b1.month < b2.month:
+			return -1
+		elif b1.month > b2.month:
+			return 1
+		else:
+			if b1.day < b2.day:
+				return -1
+			else:
+				return 1
+
+	#ejemplo b1 en entero, actual febrero, b2 marzo
+	if b1.month < today.month and today.month < b2.month:
+		return 1
+	#ejemplo b2 en entero, actual febrero, b1 marzo
+	if b2.month < today.month and today.month < b1.month:
+		return -1
+
+	#ejemplo. actual enero, b1 en febrero, b2 en marzo
+	if today.month < b1.month and today.month < b2.month:
+		if b1.month < b2.month:
+			return -1
+		elif b1.month > b2.month:
+			return 1
+		else:
+			if b1.day < b2.day:
+				return -1
+			else:
+				return 1
+
+
+	return cmp(b1,b2)

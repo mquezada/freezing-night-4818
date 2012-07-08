@@ -50,7 +50,7 @@
 		{%for friend in friends%}
 			<div class="well">
 				<img src="{{friend.picture}}"/>
-				{{friend.name}} <a href="/friends_likes/{{friend.id}}">likes</a><br/>
+				{{friend.name}} {{friend.birthday}}<a href="/friends_likes/{{friend.id}}">likes</a><br/>
 			</div>
 		{%endfor%}
 	</div>
