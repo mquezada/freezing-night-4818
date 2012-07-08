@@ -90,5 +90,32 @@ def cmp_dates(f1,f2):
 			else:
 				return 1
 
+	#mes de b1, b2 y actual el mismo
+	if today.month == b1.month and today.month == b2.month:
+		#b1 y b2 mayores en dias
+		if today.day < b1.day and today.day < b2.day:
+			return cmp(b1.day,b2.day)
+		#b1 y b2 menores
+		if today.day > b1.day and today.day > b2.day:
+			return cmp(b1.day,b2.day)
+		if today.day > b1.day:
+			return -1
+		if today.day > b2.day:
+			return 1
+
+
+	#mes de b1 es igual a actual
+	if today.month == b1.month:
+		if today.day < b1.day:
+			return -1
+		else:
+			return 1
+	#mes de b1 es igual a actual
+	if today.month == b2.month:
+		if today.day < b2.day:
+			return 1
+		else:
+			return -1
+
 
 	return cmp(b1,b2)
