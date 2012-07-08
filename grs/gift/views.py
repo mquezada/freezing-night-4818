@@ -16,6 +16,8 @@ def index(request):
 	return render_to_response("index.html",params)
 
 def templates(request):
+	return render_to_response("index.kindle",{"variable":"hola"}, context_instance=RequestContext(request))
+	
 	username = ''
 	if "user" in request.session:
 		username = request.session['user']
