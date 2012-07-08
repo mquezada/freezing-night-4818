@@ -53,8 +53,8 @@
 
 		{%for friend in friends%}
 			<div class="well">
-				<a href="/friends_likes/{{friend.id}}"><img src="{{friend.picture}}"/></a>
-				<a href="/friends_likes/{{friend.id}}">{{friend.name}} {{friend.birthdayString}}</a>
+				<a href="/recommendations/{{friend.id}}"><img src="{{friend.picture}}"/></a>
+				<a href="/recommendations/{{friend.id}}">{{friend.name}} {{friend.birthdayString}}</a>
 			</div>
 		{%endfor%}
 	</div>

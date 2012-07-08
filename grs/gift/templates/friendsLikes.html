@@ -20,13 +20,22 @@
 <div class="navbar">
 	<div class="navbar-inner">
 		<div class="container">
-			<a class="brand" href="#"> Regálame algo po =( </a>
+			<a class="brand" href="#">Party Hard!</a>
 			<ul class="nav pull-right">
+				<li class="divider-vertical"></li>
 				<li>
 					{%if user%}
-						<a href="/logout">deslogueate {{user.first_name}} {{user.last_name}}</a>
+						<li class="dropdown">
+							<a class="dropdown-toggle" data-toggle="dropdown">
+								<img id="profile-pic" src="{{picture}}"/> {{user.first_name}} {{user.last_name}}
+							    <b class="caret"></b>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a href="/logout">Logout</a></li>
+							</ul>
+						</li>
 					{%else%}
-						<a href="/login/facebook">logearse</a>
+						<a href="login/facebook">logearse</a>
 					{%endif%}
 				</li>
 			</ul>
@@ -37,6 +46,7 @@
 <div class="container">
 
 {% if tieneLikes %}
+
 <div class="content">
 	{% for tienda, productos in recommendations.iteritems %}
 		<div class="content well">
