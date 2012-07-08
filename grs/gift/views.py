@@ -9,6 +9,7 @@ from social_auth.models import *
 from fb.fb import *
 import facebook
 import operator
+from threading import Thread
 
 def index(request):
 	params = {"user": None}
@@ -94,22 +95,50 @@ def friendsLikes(request, id=-1):
 		{"likes":likes, "recommendations":recommendations, "tieneLikes":tieneLikes},
 		context_instance=RequestContext(request))
 
+def aggregate_wrapper(name, l, result):
+	result.update(aggregate(name, l))
+
+def get_wrapper(token, id, name, result):
+	result.extend(get(token, id, name))
+
 
 def recommendations(request, id=-1):
 	if id < 0:
 		return redirect("/")
 
-	books = get(request.session['access_token'], id, 'books')
-	games = get(request.session['access_token'], id, 'games')
-	music = get(request.session['access_token'], id, 'music')
-	movies = get(request.session['access_token'], id, 'movies')
+	books = []
+	games = []
+	music = []
+	movies = []
 
-	books  = aggregate('books', books)
-	music  = aggregate('music', music)
-	movies = aggregate('movies', movies)
-	games  = aggregate('games', games)
+	threads = [
+		Thread(target=get_wrapper, args=(request.session['access_token'], id, 'books', books)),
+		Thread(target=get_wrapper, args=(request.session['access_token'], id, 'games', games)),
+		Thread(target=get_wrapper, args=(request.session['access_token'], id, 'music', music)),
+		Thread(target=get_wrapper, args=(request.session['access_token'], id, 'movies', movies))
+	]
 
-	recs = dict(books.items() + music.items() + movies.items() + games.items())
+	map(lambda t : t.start(), threads)
+	map(lambda t : t.join(), threads)
+
+	rbooks = {}
+	rgames = {}
+	rmusic = {}
+	rmovies = {}
+
+	threads = [
+		Thread(target=aggregate_wrapper, args=('books', books, rbooks)),
+		Thread(target=aggregate_wrapper, args=('music', music, rmusic)),
+		Thread(target=aggregate_wrapper, args=('games', games, rgames)),
+		Thread(target=aggregate_wrapper, args=('movies', movies, rmovies)),
+	]
+
+	map(lambda t : t.start(), threads)
+	map(lambda t : t.join(), threads)
+
+	print rmusic
+	
+	recs = dict(rbooks.items() + rmusic.items() + rmovies.items() + rgames.items())
 
 	if len(recs) > 0:
 		tieneLikes = True
