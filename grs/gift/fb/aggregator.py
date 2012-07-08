@@ -1,8 +1,9 @@
 from falabella import falabella
 from paris import paris
-from ebay import ebay
+from ebay import ebay2
 from feriamix import feriamix
-from threading import Thread
+from books.buscalibros import buscalibros
+from games.zmart import zmart
 
 class GiftSource(object):
 	"""docstring for GiftSource"""
@@ -10,36 +11,27 @@ class GiftSource(object):
 		super(GiftSource, self).__init__()
 		self.source = source
 		self.recommendations = recommendations
-		
-#t = Thread(target=self.search, args=(url, key_id))
 
 
-recommendations = {}
-
-def add_rec(name, method, term):
-	global recommendations
-
-	if not recommendations.has_key(name):
-		recommendations[name] = []
-	recommendations[name].extend(method(term))
-
-def aggregate(terms):
-
-	global recommendations
+def aggregate(category, terms):
 	recommendations = {}
-	threads = []
 	for term in terms:
 		term = term["name"]
-		term_threads = [
-			Thread(target=add_rec, args=('Falabella', falabella, term)),
-			#Thread(target=add_rec, args=('Paris', paris, term)),
-			Thread(target=add_rec, args=('Ebay', ebay, term)),
-			#Thread(target=add_rec, args=('Feriamix', feriamix, term))
-		]
 
-		map(lambda t : t.start(), term_threads)
-		threads += term_threads
+		if not recommendations.has_key(category):
+			recommendations[category] = []
 
-	map(lambda t : t.join(), threads)		
+		if category == 'movies':
+			recommendations['movies'].extend(ebay2(term, 'movies'))
 
+		elif category == 'music':
+			recommendations['music'].extend(ebay2(term, 'music'))
+
+		elif category == 'books':
+			recommendations['books'].extend(buscalibros(term))
+
+		elif category == 'games':
+			recommendations['games'].extend(zmart(term))
+	
+	
 	return recommendations
