@@ -24,9 +24,13 @@ def get_likes(access_token, id, limit=10):
 	data = likes["data"]
 	names = []
 
+	i = 1
 	if len(data) > 0:
 		for like in data:
 			names.append(like["name"])	
+			if i == limit:
+				break
+			i += 1
 
 	return names
 

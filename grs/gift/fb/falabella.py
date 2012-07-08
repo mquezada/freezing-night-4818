@@ -1,4 +1,5 @@
 from BeautifulSoup import BeautifulSoup
+from django.utils.encoding import smart_str, smart_unicode
 import mechanize
 
 def falabella(term):
@@ -10,7 +11,7 @@ def falabella(term):
 
 	b.open(url)
 	b.select_form(nr=0)
-	b['texto-busqueda'] = term
+	b['texto-busqueda'] = smart_str(term)
 
 	html = b.submit().read()
 
