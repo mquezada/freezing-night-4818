@@ -1,5 +1,6 @@
 import facebook
 import sys
+import locale
 from datetime import *
 
 def get_friends(access_token, user):
@@ -7,6 +8,7 @@ def get_friends(access_token, user):
 
 	friends = graph.get_connections(user.username, "friends", fields=['name','birthday','picture'])
 	data = friends["data"]
+	map(format_fecha, data)
 	data.sort(cmp_dates)
 	data = data[:10]
 	frs = []
@@ -57,10 +59,8 @@ def cmp_dates(f1,f2):
 	if "birthday" not in f2:
 		return -1
 
-	b1list = f1["birthday"].split("/")
-	b2list = f2["birthday"].split("/")
-	b1 = datetime.strptime(b1list[0]+"/"+b1list[1], "%m/%d")
-	b2 = datetime.strptime(b2list[0]+"/"+b2list[1], "%m/%d")
+	b1 = datetime.strptime(f1["birthday2"], "%m/%d")
+	b2 = datetime.strptime(f2["birthday2"], "%m/%d")
 	today = datetime.today()
 
 	#ejemplo. b1 en enero, b2 en febrero, actual marzo, mas cercano b1
@@ -123,3 +123,11 @@ def cmp_dates(f1,f2):
 
 
 	return cmp(b1,b2)
+
+def format_fecha(data):
+	if "birthday" in data:
+		b1list = data["birthday"].split("/")
+		b1 = b1list[0]+"/"+b1list[1]
+		data["birthday2"] = b1
+		aux = datetime.strptime(b1, "%m/%d")
+		data["birthdayString"] = datetime.strftime(aux, "%B %d")
