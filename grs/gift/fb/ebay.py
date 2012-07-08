@@ -14,7 +14,7 @@ def get_category(category):
 	return categories[category]
 
 def by_category(term, id):	
-	base_url = "http://svcs.sandbox.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsAdvanced&SERVICE-VERSION=1.11.0&SECURITY-APPNAME=Hashtag70-08b3-4798-b42e-243a5f7221d&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&paginationInput.entriesPerPage=10&keywords=%s&categoryId=%s&descriptionSearch=false"
+	base_url = "http://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsAdvanced&SERVICE-VERSION=1.11.0&SECURITY-APPNAME=Hashtag13-5eca-4bcf-8db6-24321011273&RESPONSE-DATA-FORMAT=JSON&REST-PAYLOAD&paginationInput.entriesPerPage=10&keywords=%s&categoryId=%s&descriptionSearch=false&outputSelector=GalleryInfo"
 
 	query = urllib.quote(smart_str("\"%s\"" % term))
 	url = base_url % (query, id)
@@ -40,7 +40,7 @@ def ebay2(term, category):
 			for item in verde['item']:
 				nombre = item['title'][0]
 				link = item['viewItemURL'][0]
-				img = ""
+				img = item['galleryURL'][0]
 				desc = ""
 				precio = "%s %s" % (item['sellingStatus'][0]['convertedCurrentPrice'][0]['@currencyId'], item['sellingStatus'][0]['convertedCurrentPrice'][0]['__value__'])
 		

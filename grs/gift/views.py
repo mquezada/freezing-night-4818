@@ -131,8 +131,6 @@ def recommendations(request, id=-1):
 
 	map(lambda t : t.start(), threads)
 	map(lambda t : t.join(), threads)
-
-	print rmusic
 	
 	recs = dict(rbooks.items() + rmusic.items() + rmovies.items() + rgames.items())
 
