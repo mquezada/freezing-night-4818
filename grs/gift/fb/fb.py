@@ -28,10 +28,20 @@ def get_likes(access_token, id, limit=10):
 	if len(data) > 0:
 		for like in data:
 			names.append(like["name"])	
-			if i == limit:
-				break
-			i += 1
-	return data
+			
+	return data[:limit]
+
+def get(access_token, id, term):
+	graph = facebook.GraphAPI(access_token)
+	cosas = graph.get_connections(id, term)
+	data = cosas["data"]
+	names = []
+
+	if len(data) > 0:
+		for like in data:
+			names.append(like["name"])	
+			
+	return data[:limit]
 
 def friend_likes(access_token, user):
 	graph = facebook.GraphAPI(access_token)
