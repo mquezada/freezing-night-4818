@@ -1,0 +1,6 @@
+Amigos de {{user.first_name}} {{user.last_name}}
+<p/>
+
+{%for friend in friends%}
+	{{friend.name}} <a href="/friends_likes/{{friend.id}}">likes</a><br/>
+{%endfor%}
