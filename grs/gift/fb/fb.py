@@ -6,7 +6,7 @@ def get_friends(access_token, user):
 
 	friends = graph.get_connections(user.username, "friends")
 	data = friends["data"]
-	data = data[:10]
+	data = data[:5]
 	frs = []
 
 
@@ -14,8 +14,8 @@ def get_friends(access_token, user):
 		for fr in data:
 			aux = {}
 			aux = fr
-			#aux["picture"] = graph.get_connections(fr["id"], "picture")["url"]
-			aux["picture"] = ""
+			aux["picture"] = graph.get_connections(fr["id"], "picture")["url"]
+			#aux["picture"] = ""
 			frs.append(aux)
 
 	return frs
