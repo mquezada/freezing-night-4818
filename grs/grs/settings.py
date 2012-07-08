@@ -189,6 +189,8 @@ FACEBOOK_APP_ID = 338163959596498
 #FACEBOOK_API_SECRET = '4ab8245c47ba098c3341017fa6e05a21'
 FACEBOOK_API_SECRET = '134d4c5f2ebac409737da0e9e7fd02dd'
 
+FACEBOOK_EXTENDED_PERMISSIONS = ['friends_birthday', 'friends_interests', 'friends_likes']
+
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/logged/'
 LOGIN_ERROR_URL = 'login-error/'
