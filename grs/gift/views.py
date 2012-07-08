@@ -80,7 +80,7 @@ def friendsLikes(request, id=-1):
 		tieneLikes = False
 
 	recommendations = aggregate(likes)
-
+	
 	return render_to_response(
 		"friendsLikes.html", 
 		{"likes":likes, "recommendations":recommendations, "tieneLikes":tieneLikes},
