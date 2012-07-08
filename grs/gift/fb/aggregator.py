@@ -24,12 +24,14 @@ def add_rec(name, method, term):
 	recommendations[name].extend(method(term))
 
 def aggregate(terms):
+
 	threads = []
 	for term in terms:
+		term = term["name"]
 		term_threads = [
-			Thread(target=add_rec, args=('Falabella', falabella, term)),
+			#Thread(target=add_rec, args=('Falabella', falabella, term)),
 			Thread(target=add_rec, args=('Paris', paris, term)),
-			Thread(target=add_rec, args=('Ebay', ebay, term)),
+			#Thread(target=add_rec, args=('Ebay', ebay, term)),
 			#Thread(target=add_rec, args=('Feriamix', feriamix, term))
 		]
 
@@ -37,5 +39,5 @@ def aggregate(terms):
 		threads += term_threads
 
 	map(lambda t : t.join(), threads)		
-	
+
 	return recommendations

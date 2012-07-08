@@ -6,7 +6,7 @@
 <body>
 <div class="container">
 
-
+{% if tieneLikes %}
 	<ul>	
 	{% for tienda, productos in recommendations.iteritems %}
 		<li>{{ tienda }}</li>
@@ -21,6 +21,10 @@
 		</ul>
 	{% endfor %}
 	</ul>
+{% else %}
+	<h2>Tu amigo no tiene 'likes' en facebook</h2>
+{% endif %}
+
 </div>
 
 </body>

@@ -75,11 +75,15 @@ def friendsLikes(request, id=-1):
 		return redirect("/")
 
 	likes = get_likes(request.session["access_token"], id)
-	recommendations = aggregate(likes)
+	tieneLikes = True
+	if len(likes) == 0:
+		tieneLikes = False
 
+	recommendations = aggregate(likes)
+	
 	return render_to_response(
 		"friendsLikes.html", 
-		{"likes":likes, "recommendations":recommendations},
+		{"likes":likes, "recommendations":recommendations, "tieneLikes":tieneLikes},
 		context_instance=RequestContext(request))
 
 

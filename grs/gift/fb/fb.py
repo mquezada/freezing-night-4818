@@ -22,6 +22,7 @@ def get_friends(access_token, user, limit=10):
 	return frs
 
 def get_likes(access_token, id, limit=10):
+
 	graph = facebook.GraphAPI(access_token)
 	likes = graph.get_connections(id, "likes")
 	data = likes["data"]
