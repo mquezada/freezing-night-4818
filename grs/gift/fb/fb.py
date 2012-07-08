@@ -22,11 +22,10 @@ def get_likes(access_token, id, limit=10):
 	data = likes["data"]
 	names = []
 
-	if len(data) > 0:
-		for like in data:
-			names.append(like["name"])	
+	for like in data:
+		names.append(like["name"])
 
-	return names
+	return data
 
 def friend_likes(access_token, user):
 	graph = facebook.GraphAPI(access_token)
@@ -44,3 +43,9 @@ def friend_likes(access_token, user):
 		}
 
 	return likes
+
+def get_likes_likes(access_token, id):
+	graph = facebook.GraphAPI(access_token)
+	info = graph.get_object(id)
+
+	return info

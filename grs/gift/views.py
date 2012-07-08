@@ -8,6 +8,7 @@ from django.template import RequestContext
 from social_auth.models import *
 from fb.fb import *
 import facebook
+import operator
 
 def index(request):
 	params = {"user": None}
@@ -74,3 +75,19 @@ def logout(request):
 	if "user" in request.session:
 		del request.session["user"]
 	return redirect("/")
+
+
+def c(request, id=-1):
+	likes = get_likes(request.session["access_token"], id)
+	categories = {}
+	for like in likes:
+		if like["category"] in categories:
+			categories[like["category"]] += 1
+		else:
+			categories[like["category"]]  = 1
+		print get_likes_likes(request.session["access_token"],like["id"])
+	
+	categories = sorted(categories.iteritems(), key=operator.itemgetter(1))
+	categories.reverse()
+
+	return render_to_response("c.html", {"likes":likes, "categories":categories}, context_instance=RequestContext(request))
