@@ -76,7 +76,7 @@ def friendsLikes(request, id=-1):
 
 	likes = get_likes(request.session["access_token"], id)
 	recommendations = aggregate(likes)
-
+	
 	return render_to_response(
 		"friendsLikes.html", 
 		{"likes":likes, "recommendations":recommendations},
