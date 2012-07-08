@@ -1,1 +1,35 @@
-{{username}} : {{access_token}}
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+</head>
+<body>
+
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand" href="#"> Regálame algo po =( </a>
+				<ul class="nav pull-right">
+					<li>
+						{%if user%}
+							<a href="logout">deslogueate {{user.first_name}} {{user.last_name}}</a>
+						{%else%}
+							<a href="login/facebook">logearse</a>
+						{%endif%}
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="container box">
+		<form class="well form-search" name="buscar-form" action="/grs/gift/amigos">
+			<span class="form text">Busca a tus amigos:</span> 
+			<input type="text" class="input-medium search-query" name="buscar"/>
+			<button type="submit" class="btn"> <i class="icon-search"></i></button>
+		</form>
+
+	</div>
+
+</body>
+</html>
+

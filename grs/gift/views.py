@@ -11,7 +11,7 @@ from fb.fb import *
 def index(request):
 	params = {"user": None}
 	if "user" in request.session:
-		params["user"] = request.session["user"]
+		return redirect("/logged")
 
 	return render_to_response("index.html",params)
 
@@ -39,8 +39,8 @@ def logged(request):
 	user = request.user
 	access_token = UserSocialAuth.objects.get(user_id=user.id).extra_data['access_token']
 	request.session["user"] = user
-	print friend_likes(access_token, user)
-	return render_to_response("logged.kindle",{"access_token":access_token, "username":user.username}, context_instance=RequestContext(request))
+	friends = get_friends(access_token, user)
+	return render_to_response("logged.kindle",{"access_token":access_token, "username":user.username, "user":user, "friends":friends}, context_instance=RequestContext(request))
 
 def logout(request):
 	if "user" in request.session:

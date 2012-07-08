@@ -1,5 +1,33 @@
-{%if user%}
-	<a href="logout">deslogueate {{user.first_name}} {{user.last_name}}</a>
-{%else%}
-	<a href="login/facebook">logearse</a>
-{%endif%}
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+</head>
+<body>
+
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="brand" href="#"> Regálame algo po =( </a>
+				<ul class="nav pull-right">
+					<li>
+						{%if user%}
+							<a href="logout">deslogueate {{user.first_name}} {{user.last_name}}</a>
+						{%else%}
+							<a href="login/facebook">logearse</a>
+						{%endif%}
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div class="container box">
+		<h1>Bienvenidos a "Regálame algo po =("</h1>
+		<h3>
+			Esta es una aplicación de recomendación de regalos, para utilizar el máximo potencial de esta aplicación te recomendamos iniciar sesión con tu cuenta de Facebook
+		</h3>
+	</div>
+
+</body>
+</html>
+
