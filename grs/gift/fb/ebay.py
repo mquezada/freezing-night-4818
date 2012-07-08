@@ -40,7 +40,10 @@ def ebay2(term, category):
 			for item in verde['item']:
 				nombre = item['title'][0]
 				link = item['viewItemURL'][0]
-				img = item['galleryURL'][0]
+				if item.has_key('galleryURL'):
+					img = item['galleryURL'][0]
+				else:
+					img = "http://www.buscalibros.cl/imagenes/no-imagen-chica.gif"
 				desc = ""
 				precio = "%s %s" % (item['sellingStatus'][0]['convertedCurrentPrice'][0]['@currencyId'], item['sellingStatus'][0]['convertedCurrentPrice'][0]['__value__'])
 		

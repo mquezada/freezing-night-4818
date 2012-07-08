@@ -125,10 +125,10 @@ def recommendations(request, id=-1):
 	rmovies = {}
 
 	threads = [
-		Thread(target=aggregate_wrapper, args=('books', books, rbooks)),
-		Thread(target=aggregate_wrapper, args=('music', music, rmusic)),
-		Thread(target=aggregate_wrapper, args=('games', games, rgames)),
-		Thread(target=aggregate_wrapper, args=('movies', movies, rmovies)),
+		Thread(target=aggregate_wrapper, args=('Libros', books, rbooks)),
+		Thread(target=aggregate_wrapper, args=('Musica', music, rmusic)),
+		Thread(target=aggregate_wrapper, args=('Juegos', games, rgames)),
+		Thread(target=aggregate_wrapper, args=('Peliculas', movies, rmovies)),
 	]
 
 	map(lambda t : t.start(), threads)
