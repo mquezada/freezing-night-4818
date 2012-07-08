@@ -2,13 +2,14 @@ import facebook
 import sys
 from datetime import *
 
-def get_friends(access_token, user):
+def get_friends(access_token, user, limit=10):
 	graph = facebook.GraphAPI(access_token)
 
 	friends = graph.get_connections(user.username, "friends", fields=['name','birthday','picture'])
 	data = friends["data"]
 	data.sort(cmp_dates)
-	data = data[:10]
+	if limit != 0:
+		data = data[:limit]
 	frs = []
 
 

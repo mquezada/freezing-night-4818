@@ -55,11 +55,22 @@ def friends(request):
 	
 
 	#print friend_likes(access_token, user)
-	friends = get_friends(access_token, user)
-	friends = friends[:10]
-	return render_to_response("friends.html", {"user":user, "friends":friends, "picture": picture}, context_instance=RequestContext(request))
+
+	allFriends = get_friends(access_token, user, 0)
+	friends = allFriends[:10]
+	allFriends = map(lambda x: x["name"], allFriends)
+	return render_to_response("friends.html", {"user":user, "friends":friends, "picture": picture, "allFriends": allFriends}, context_instance=RequestContext(request))
 
 	#return render_to_response("logged.kindle",{"access_token":access_token, "username":user.username}, context_instance=RequestContext(request))
+
+def search(request):
+	name = request.POST["buscar"]
+	friends = get_friends(request.session["access_token"], request.session["user"], 0)
+	for friend in friends:
+		print name
+		print friend["name"]
+		if friend["name"]==name:
+			return redirect("/friends_likes/"+str(friend["id"]))
 
 def friendsLikes(request, id=-1):
 	if id == -1:

@@ -9,6 +9,7 @@
 
 	<script type="text/javascript" charset="utf-8">
 		$('.dropdown-toggle').dropdown();
+		$('.typeahead').typeahead()
 	</script>
 	<link rel="stylesheet" href="/static/regalame.css" type="text/css" charset="utf-8">
 </head>
@@ -41,9 +42,12 @@
 	</div>
 
 	<div class="container box">
-		<form class="well form-search" name="buscar-form" action="/grs/gift/amigos">
+		<form class="well form-search" name="buscar-form" action="/gift/search/" method="post">{% csrf_token %}
 			<span class="form text"><strong>Busca a tus amigos:</strong></span> 
-			<input type="text" class="input-large search-query" name="buscar"/>
+			<input type="text" data-provide="typeahead"
+			data-source='[{% for f in allFriends %}"{{f}}",{% endfor %}""]'
+			data-items="8"
+			class="input-large search-query" name="buscar"/>
 			<button type="submit" class="btn"> <i class="icon-search"></i></button>
 		</form>
 
