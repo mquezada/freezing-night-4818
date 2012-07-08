@@ -4,19 +4,15 @@ import sys
 def get_friends(access_token, user):
 	graph = facebook.GraphAPI(access_token)
 
-	friends = graph.get_connections(user.username, "friends")
+	friends = graph.get_connections(user.username, "friends", fields=['name','birthday','picture'])
 	data = friends["data"]
-	data = data[:5]
+	data = data[:10]
 	frs = []
 
 
 	if len(data) > 0:		
 		for fr in data:
-			aux = {}
-			aux = fr
-			aux["picture"] = graph.get_connections(fr["id"], "picture")["url"]
-			#aux["picture"] = ""
-			frs.append(aux)
+			frs.append(fr)
 
 	return frs
 
