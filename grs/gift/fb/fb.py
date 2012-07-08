@@ -154,3 +154,10 @@ def format_fecha(data):
 		data["birthday2"] = b1
 		aux = datetime.strptime(b1, "%m/%d")
 		data["birthdayString"] = datetime.strftime(aux, "%B %d")
+
+def getFriendName(access_token, id):
+	graph = facebook.GraphAPI(access_token)
+	profile = graph.get_object(id)
+	return profile["name"]
+	
+	

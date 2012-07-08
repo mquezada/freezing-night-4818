@@ -86,6 +86,8 @@ def friendsLikes(request, id=-1):
 
 	recommendations = aggregate('music', likes)
 	
+	
+	
 	return render_to_response(
 		"friendsLikes.html", 
 		{"likes":likes, "recommendations":recommendations, "tieneLikes":tieneLikes},
@@ -141,7 +143,10 @@ def recommendations(request, id=-1):
 
 	picture = request.session["picture"]
 	user = request.session["user"]
-	return render_to_response("friendsLikes.html", {'recommendations' : recs, 'tieneLikes' : tieneLikes, 'picture':picture, 'user':user}) 
+	
+	friend = getFriendName(request.session['access_token'],id)
+	
+	return render_to_response("friendsLikes.html", {'recommendations' : recs, 'tieneLikes' : tieneLikes, 'picture':picture, 'user':user, 'friendName':friendName}) 
 
 def logout(request):
 	if "user" in request.session:

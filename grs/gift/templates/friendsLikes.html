@@ -49,6 +49,11 @@
 {% if tieneLikes %}
 
 <div class="span10 offset1 content">
+	
+	<div class="content well">
+		<h3>Recomendaciones para {{friendName}}</h3>
+	</div>
+	
 	{% for tienda, productos in recommendations.iteritems %}
 		<div class="content well productos">
 			<div class="content-heading">
