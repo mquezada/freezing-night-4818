@@ -43,8 +43,10 @@ def logged(request):
 	m_user = request.user.username
 	l = dir(request.user)
 
-	a = str(request.user.get_profile())
-	print a
+	a = str(request.user.natural_key)
+	b = str(request.user.objects)
+	c = str(request.user.objects())
+	print a,b,c
 
 
 	
