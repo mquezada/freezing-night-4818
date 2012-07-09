@@ -43,10 +43,10 @@ def logged(request):
 	m_user = request.user.username
 	l = dir(request.user)
 
-	a = str(request.user.id)
+	a = str(request.user.get_profile())
 	print a
 
-	
+
 	
 	request.session["access_token"] = UserSocialAuth.objects.get(user_id=request.user.id).extra_data['access_token']
 	graph = facebook.GraphAPI(request.session["access_token"])
