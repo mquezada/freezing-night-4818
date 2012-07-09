@@ -30,7 +30,12 @@ def zmart(term):
 		 nombre = prod.h3.text
 		 link = prod.h3.a['href']
 		 img = prod.img['src']
-		 precio1 = prod.li.next.next.next.text
+		 precio1 = prod.li.next.next.next
+		
+		 if precio1 is not None:
+			precio1 = precio1.text
+		 else:
+			precio1 = "Precio no disponible"
 
 		 result.append({
 		 	'nombre' : nombre,
