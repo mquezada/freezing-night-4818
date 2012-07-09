@@ -41,8 +41,7 @@ def fb(request):
 def logged(request):
 	request.session["user"] = request.user
 	m_user = request.user
-	d = m_user.social_auth.get(provider='facebook').extra_data('username')
-
+	
 	request.session["access_token"] = UserSocialAuth.objects.get(user_id=request.user.id).extra_data['access_token']
 	graph = facebook.GraphAPI(request.session["access_token"])
 	request.session["picture"] = graph.get_connections(str(m_user.id), "picture")['url']
