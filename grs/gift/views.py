@@ -42,10 +42,7 @@ def logged(request):
 	request.session["user"] = request.user
 	request.session["access_token"] = UserSocialAuth.objects.get(user_id=request.user.id).extra_data['access_token']
 	graph = facebook.GraphAPI(request.session["access_token"])
-	request.session["picture"] = graph.get_connections(request.user.username, "picture")
-
-	if request.session["picture"].has_key("url"):
-		request.session["picture"] = request.session["picture"]["url"]
+	request.session["picture"] = "" #graph.get_connections(request.user.username, "picture")
 
 	return redirect("/friends")
 
