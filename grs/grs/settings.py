@@ -190,6 +190,8 @@ FACEBOOK_API_SECRET = '4ab8245c47ba098c3341017fa6e05a21'
 
 FACEBOOK_EXTENDED_PERMISSIONS = ['friends_birthday', 'friends_interests', 'friends_likes']
 
+FACEBOOK_EXTRA_DATA = [('username', 'username')]
+
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/logged/'
 LOGIN_ERROR_URL = 'login-error/'
